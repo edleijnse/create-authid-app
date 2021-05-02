@@ -1,0 +1,21 @@
+<script
+        src="https://cdn.jsdelivr.net/npm/emailjs-com@2.4.0/dist/email.min.js">
+</script>
+<script>
+    (function(){
+        emailjs.init("user_u9PLYvCZGGCqK1HGzCdV2"); //Insert your User ID
+    })();
+</script>
+<script>
+    var templateParams = {
+        name: 'Sender',
+        notes: 'Test email'
+    };
+
+    emailjs.send('service_sl8yr4m', 'template_mij17qc', templateParams) //Insert your email service ID and email template ID
+        .then(function(response) {
+            console.log('SUCCESS!', response.status, response.text);
+        }, function(error) {
+            console.log('FAILED...', error);
+        });
+</script>
