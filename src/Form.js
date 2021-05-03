@@ -3,8 +3,16 @@ import React from 'react';
 export default class Login extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { feedback: '', name: 'TAGGER Biz',  from_name: 'ed.leijnse@gmail.com',  to_name: 'ed@leijnse.info', email: 'ed@leijnse.info' };
+        this.state = {
+            feedback: '',
+            submitMessage: '',
+            name: 'TAGGER Biz',
+            from_name: 'ed.leijnse@gmail.com',
+            to_name: 'ed@leijnse.info',
+            email: 'ed@leijnse.info'
+        };
         this.handleChange = this.handleChange.bind(this);
+        this.handleChangeEmail = this.handleChangeEmail.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
@@ -23,22 +31,48 @@ export default class Login extends React.Component {
             style={{width: '100%', height: '150px'}}
         />
                 </div>
-                <input type="button" value="Submit" className="btn btn--submit" onClick={this.handleSubmit} />
+                <h1>email</h1>
+                <div>
+      	<textarea
+            id="test-mailing-email"
+            name="test-mailing-email"
+            onChange={this.handleChangeEmail}
+            placeholder="your email address"
+            required
+            value={this.state.to_name}
+            style={{width: '100%', height: '150px'}}
+        />
+                </div>
+                <div>{this.state.submitMessage}</div>
+                <input type="button" value="Submit" className="btn btn--submit" onClick={this.handleSubmit}/>
             </form>
         )
     }
 
     handleChange(event) {
         this.setState({feedback: event.target.value})
+        this.setState({submitMessage: "to submit"});
+    }
+    handleChangeEmail(event) {
+        this.setState({to_name: event.target.value})
+        this.setState({submitMessage: "to submit"});
     }
 
-    handleSubmit (event) {
+    handleSubmit(event) {
         const templateId = 'template_mij17qc';
 
-        this.sendFeedback(templateId, {message_html: this.state.feedback, from_name: this.state.from_name, to_name: this.state.to_name,  reply_to: this.state.email})
+        this.sendFeedback(templateId, {
+            message_html: this.state.feedback,
+            from_name: this.state.from_name,
+            to_name: this.state.to_name,
+            reply_to: this.state.email
+        })
+
+        this.setState({submitMessage: "submitted"});
+
     }
 
-    sendFeedback (templateId, variables) {
+    sendFeedback(templateId, variables) {
         window.emailjs.send(
             'service_sl8yr4m', templateId,
             variables
