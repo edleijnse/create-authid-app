@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import { createContext } from "react";
 
 export default class Login extends React.Component {
     constructor(props) {
@@ -17,11 +19,12 @@ export default class Login extends React.Component {
     }
 
     render() {
-        if (this.state.submitMessage=="submitted") {
+        if (this.state.submitMessage==="submitted") {
             return (
                 <form className="test-mailing">
                     <h1>It worked, email submitted to: {this.state.to_name} </h1>
                     <div>{this.state.submitMessage}</div>
+                    <Link to="/CheckCodeFromCustomer">check code</Link>
                 </form>
             )
         } else {
