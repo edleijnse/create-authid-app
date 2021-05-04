@@ -3,7 +3,9 @@ import './App.css';
 import Login from './Form';
 
 function App() {
-  /* samples in mfa-demo-mode */
+  /* samples in mfa-demo-mode *
+
+   */
   return <Login />;
   /* return (
     <div className="App">

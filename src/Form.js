@@ -17,10 +17,18 @@ export default class Login extends React.Component {
     }
 
     render() {
-        return (
-            <form className="test-mailing">
-                <h1>Let's see if it works</h1>
-                <div>
+        if (this.state.submitMessage=="submitted") {
+            return (
+                <form className="test-mailing">
+                    <h1>It worked, email submitted to: {this.state.to_name} </h1>
+                    <div>{this.state.submitMessage}</div>
+                </form>
+            )
+        } else {
+            return (
+                <form className="test-mailing">
+                    <h1>Let's see if it works</h1>
+                    <div>
       	<textarea
             id="test-mailing"
             name="test-mailing"
@@ -30,9 +38,9 @@ export default class Login extends React.Component {
             value={this.state.feedback}
             style={{width: '100%', height: '150px'}}
         />
-                </div>
-                <h1>email</h1>
-                <div>
+                    </div>
+                    <h1>email</h1>
+                    <div>
       	<textarea
             id="test-mailing-email"
             name="test-mailing-email"
@@ -42,11 +50,12 @@ export default class Login extends React.Component {
             value={this.state.to_name}
             style={{width: '100%', height: '150px'}}
         />
-                </div>
-                <div>{this.state.submitMessage}</div>
-                <input type="button" value="Submit" className="btn btn--submit" onClick={this.handleSubmit}/>
-            </form>
-        )
+                    </div>
+                    <div>{this.state.submitMessage}</div>
+                    <input type="button" value="Submit" className="btn btn--submit" onClick={this.handleSubmit}/>
+                </form>
+            )
+        }
     }
 
     handleChange(event) {
