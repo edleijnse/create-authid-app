@@ -19,12 +19,14 @@ export default class Login extends React.Component {
     }
 
     render() {
+        // https://ui.dev/react-router-v4-pass-props-to-link/
         if (this.state.submitMessage==="submitted") {
             return (
                 <form className="test-mailing">
                     <h1>It worked, email submitted to: {this.state.to_name} </h1>
                     <div>{this.state.submitMessage}</div>
-                    <Link to="/CheckCodeFromCustomer">check code</Link>
+                    <Link to={{ pathname: '/CheckCodeFromCustomer/' + "?to_name=" + this.state.to_name
+                        }}>check code </Link>
                 </form>
             )
         } else {
